@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jūsu Spotify Wrapped</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #222;
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1em;
+            background-color: #f9f9f9; /* gaiši pelēks fons tabulai */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* neliela ēna */
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+            color: #222; /* melns teksts */
+        }
+
+        th {
+            background-color: #e0e0e0; /* galvenes krāsa */
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f1f1f1; /* svītrota katra otrā rinda */
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .chart-section {
+            margin-bottom: 40px;
+        }
+
+        h1, h2 {
+            color: #111;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #1DB954;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #17a74a;
+        }
+
+        .artist-card {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #f2f2f2;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+
+        .highlighted {
+            background-color: #d1ffd6;
+            font-weight: bold;
+        }
+
+        .artist-icon {
+            width: 24px;
+            height: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Jūsu Spotify Wrapped Rezultāti</h1>
+
+        <!-- Top 5 Artists Section -->
+        <div class="chart-section">
+            <h2>Top 5 Izpildītāji</h2>
+            <div class="top-artists-container">
+                {% for artist in top_artists %}
+                    <div class="artist-card {% if loop.index == 1 %}highlighted{% endif %}">
+                        {% if loop.index == 1 %}
+                            <img src="{{ url_for('static', filename='first.png') }}" alt="1st" class="artist-icon">
+                        {% elif loop.index == 2 %}
+                            <img src="{{ url_for('static', filename='second.png') }}" alt="2nd" class="artist-icon">
+                        {% elif loop.index == 3 %}
+                            <img src="{{ url_for('static', filename='third.png') }}" alt="3rd" class="artist-icon">
+                        {% endif %}
+                        <span>{{ loop.index }}. {{ artist }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Top Songs Table -->
+        <div class="chart-section">
+            <h2>Top 10 Dziesmas pēc atskaņošanas laika</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Dziesma</th>
+                        <th>Atskaņošanas laiks (sek.)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in top_songs %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ item.song }}</td>
+                        <td>{{ item.playtime }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Least Played Songs Table -->
+        <div class="chart-section">
+            <h2>Vismazāk klausītās dziesmas</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Dziesma</th>
+                        <th>Atskaņošanas laiks (sek.)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in least_played_songs %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ item.song }}</td>
+                        <td>{{ item.playtime }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <a href="/" class="btn">Atgriezties</a>
+    </div>
+</body>
+</html>

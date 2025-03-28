@@ -1,0 +1,123 @@
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background-color: #121212; /* Spotify Background */
+  color: white;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.container {
+  width: 80%;
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 20px;
+}
+
+/* Main Title */
+h1 {
+  font-size: 2.5em;
+  font-weight: bold;
+  color: #1db954;
+  margin-bottom: 40px;
+}
+h2 {
+  font-size: 1.5em;
+  font-weight: normal;
+  margin-bottom: 15px;
+}
+
+.chart-section {
+  margin-bottom: 40px;
+}
+
+/* chart img */
+.chart-img {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* buttons */
+.btn {
+  display: inline-block;
+  padding: 12px 30px;
+  background-color: #1db954; /* Spotify Green */
+  color: white;
+  text-decoration: none;
+  font-size: 1.2em;
+  font-weight: bold;
+  border-radius: 30px;
+  margin-top: 30px;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #17a444; /* Slightly darker green */
+}
+
+/* TOP artists */
+.top-artists-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.artist-card {
+  background-color: #333;
+  border-radius: 10px;
+  padding: 20px;
+  width: 120px;
+  text-align: center;
+  font-size: 1.2em;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease-in-out;
+}
+
+.artist-card.highlighted {
+  width: 180px;
+  background-color: #1db954;
+  color: white;
+  font-size: 1.5em;
+  transform: scale(1.1);
+}
+
+.artist-card:hover {
+  transform: scale(1.05);
+}
+
+.artist-icon {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 10px;
+}
+
+.top-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  font-size: 1.2em;
+  text-align: left;
+}
+
+.top-list li {
+  margin: 5px 0;
+  padding: 5px;
+  background-color: #333;
+  border-radius: 5px;
+}
+
+.spotify-logo {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.spotify-logo-img {
+  width: 250px;
+  height: auto;
+}

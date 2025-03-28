@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jūsu Spotify Wrapped</title>
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Jūsu Spotify Wrapped Rezultāti</h1>
+
+<!-- Top 5 Artists Section -->
+<div class="chart-section">
+    <h2>Top 5 Izpildītāji</h2>
+    <div class="top-artists-container">
+        <!-- Display the top artists as pedestals -->
+        {% for artist in top_artists %}
+            <div class="artist-card {% if loop.index == 1 %}highlighted{% endif %}">
+                {% if loop.index == 1 %}
+                    <img src="{{ url_for('static', filename='first.png') }}" alt="1st" class="artist-icon">
+                {% elif loop.index == 2 %}
+                    <img src="{{ url_for('static', filename='second.png') }}" alt="2nd" class="artist-icon">
+                {% elif loop.index == 3 %}
+                    <img src="{{ url_for('static', filename='third.png') }}" alt="3rd" class="artist-icon">
+                {% endif %}
+                <span>{{ artist }}</span>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+        <!-- Top Songs Section -->
+        <div class="chart-section">
+            <h2>Top 10 Dziesmas pēc atskaņošanas laika</h2>
+            <img src="{{ url_for('static', filename='top_songs.png') }}" alt="Top 10 Dziesmas" class="chart-img">
+        </div>
+
+        <!-- Least Played Songs Section -->
+        <div class="chart-section">
+            <h2>Vismazāk klausītās dziesmas</h2>
+            <img src="{{ url_for('static', filename='least_played.png') }}" alt="Vismazāk klausītās dziesmas" class="chart-img">
+        </div>
+
+        <a href="/" class="btn">Atgriezties</a>
+    </div>
+</body>
+</html>
